@@ -77,6 +77,22 @@ void BCD_puls(char letra){
         dec=0;
     }
     if(letra='A'){
-        
+        for(i=0; i<7;i++){
+            if(est[uni][i]){
+                GPIOA -> BSRR|= (1<<seg1[i]);
+            }else{
+                GPIOA -> BSRR|= (1<<(seg1[i]+16));
+            }
+            if(est[dec][i]){
+                GPIOA -> BSRR|= (1<<seg2[i]);
+            }else{
+                GPIOA -> BSRR|= (1<<(seg2[i]+16));
+            }
+            uni++;
+            if(uni>9){
+                uni=0;
+                dec++;
+            }
+        }
     }
 }
